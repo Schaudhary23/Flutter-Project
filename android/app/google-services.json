@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "843780884679",
+    "project_id": "foodorderingapp-a8ecb",
+    "storage_bucket": "foodorderingapp-a8ecb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843780884679:android:618527e7c0791c0e6596e2",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843780884679-hmk1k2lh702i1nm81v9ou0h0oi1vmdpf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiEMzzQF-KwIQ4UG_Oegse0TBomDUb6kU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843780884679-hmk1k2lh702i1nm81v9ou0h0oi1vmdpf.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "843780884679-d9tepm56soq9p1eearltolap37p4f2al.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flutterApplication1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

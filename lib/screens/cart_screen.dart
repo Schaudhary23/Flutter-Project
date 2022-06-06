@@ -6,7 +6,6 @@ import '../utils/style.dart';
 
 class CartItems extends StatefulWidget {
   const CartItems({Key? key}) : super(key: key);
-
   @override
   State<CartItems> createState() => _CartItemsState();
 }
@@ -26,12 +25,12 @@ class _CartItemsState extends State<CartItems> {
         ),
         body: SingleChildScrollView(
           child: Column(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 40),
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 40),
               child: SizedBox(
                 height: 50,
                 child: Padding(
-                  padding: const EdgeInsets.only(left: 20),
+                  padding: EdgeInsets.only(left: 20),
                   child: PrimaryText(
                     text: 'Your Order Summary',
                     size: 28,
@@ -41,64 +40,59 @@ class _CartItemsState extends State<CartItems> {
             ),
             SizedBox(
                 height: 500,
-                child: Card(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  child: cartController.foods.keys.toList().length == 0
-                      ? const Text('No Items In The Cart',
-                          style: TextStyle(
-                              fontSize: 28, fontWeight: FontWeight.bold))
-                      : ListView.builder(
-                          itemCount: cartController.foods.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  CircleAvatar(
-                                    radius: 40,
-                                    backgroundImage: AssetImage(
-                                      'assets/images/' +
-                                          cartController.foods.keys
-                                              .toList()[index]
-                                              .imageUrl +
-                                          ".png",
-                                    ),
+                child: cartController.foods.keys.toList().length == 0
+                    ? const Text('No Items In The Cart',
+                        style: TextStyle(
+                            fontSize: 28, fontWeight: FontWeight.bold))
+                    : ListView.builder(
+                        itemCount: cartController.foods.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                CircleAvatar(
+                                  radius: 40,
+                                  backgroundImage: AssetImage(
+                                    'assets/images/' +
+                                        cartController.foods.keys
+                                            .toList()[index]
+                                            .imageUrl +
+                                        ".png",
                                   ),
-                                  const SizedBox(
-                                    width: 20,
-                                  ),
-                                  Expanded(
-                                    child: Text(cartController.foods.keys
-                                        .toList()[index]
-                                        .name),
-                                  ),
-                                  IconButton(
-                                    onPressed: () {
-                                      cartController.addFood(cartController
-                                          .foods.keys
-                                          .toList()[index]);
-                                    },
-                                    icon: const Icon(Icons.add_circle),
-                                  ),
-                                  Text(
-                                      '${cartController.foods.values.toList()[index]}'),
-                                  IconButton(
-                                    onPressed: () {
-                                      cartController.removeFood(cartController
-                                          .foods.keys
-                                          .toList()[index]);
-                                    },
-                                    icon: const Icon(Icons.remove_circle),
-                                  ),
-                                ],
-                              ),
-                            );
-                          }),
-                )),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                ),
+                                Expanded(
+                                  child: Text(cartController.foods.keys
+                                      .toList()[index]
+                                      .name),
+                                ),
+                                IconButton(
+                                  onPressed: () {
+                                    cartController.addFood(cartController
+                                        .foods.keys
+                                        .toList()[index]);
+                                  },
+                                  icon: const Icon(Icons.add_circle),
+                                ),
+                                Text(
+                                    '${cartController.foods.values.toList()[index]}'),
+                                IconButton(
+                                  onPressed: () {
+                                    cartController.removeFood(cartController
+                                        .foods.keys
+                                        .toList()[index]);
+                                  },
+                                  icon: const Icon(Icons.remove_circle),
+                                ),
+                              ],
+                            ),
+                          );
+                        })),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
               child: totalWindow(),
@@ -110,7 +104,7 @@ class _CartItemsState extends State<CartItems> {
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
                 onPressed: () {},
-                child: PrimaryText(text: 'Checkout'),
+                child: const PrimaryText(text: 'Checkout'),
               ),
             ),
           ]),

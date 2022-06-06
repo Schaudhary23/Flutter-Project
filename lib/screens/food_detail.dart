@@ -1,9 +1,11 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/service/food_service.dart';
 import 'package:flutter_application_1/utils/colors.dart';
-import 'package:flutter_application_1/utils/constants.dart';
+
 import 'package:flutter_application_1/utils/style.dart';
-import 'package:flutter_svg/svg.dart';
+
 import 'package:get/get.dart';
 import 'package:flutter_application_1/service/cart_controller.dart';
 
@@ -12,11 +14,24 @@ import 'cart_screen.dart';
 
 class FoodDetail extends StatelessWidget {
   final CartController controller = Get.put(CartController());
+  final String name;
+  final double price;
+  final String description;
+  final String imageUrl;
   final int index;
+  final List<Food> check;
 
   final FoodService foodcontroller = Get.put(FoodService());
   // const FoodDetail(this.imagePath);
-  FoodDetail({Key? key, required this.index}) : super(key: key);
+  FoodDetail(
+      {Key? key,
+      required this.name,
+      required this.price,
+      required this.description,
+      required this.imageUrl,
+      required this.index,
+      required this.check})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,19 +40,17 @@ class FoodDetail extends StatelessWidget {
         constraints:
             BoxConstraints(minWidth: MediaQuery.of(context).size.width - 40),
         child: ElevatedButton(
-          onPressed: () => {
-            controller.addFood(foodcontroller.foods[index]),
-            Get.to(const CartItems())
-          },
+          onPressed: () =>
+              {controller.addFood(check[index]), Get.to(CartItems())},
           child: Row(
             mainAxisSize: MainAxisSize.min,
-            children: [
+            children: const [
               PrimaryText(
                 text: 'Place an Order',
                 fontWeight: FontWeight.w600,
                 size: 18,
               ),
-              const Icon(Icons.chevron_right)
+              Icon(Icons.chevron_right)
             ],
           ),
           style: ElevatedButton.styleFrom(
@@ -59,7 +72,7 @@ class FoodDetail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 PrimaryText(
-                  text: foodcontroller.foods[index].name,
+                  text: check[index].name,
                   size: 45,
                   fontWeight: FontWeight.w600,
                 ),
@@ -67,7 +80,7 @@ class FoodDetail extends StatelessWidget {
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    PrimaryText(
+                    const PrimaryText(
                       text: 'Price    :',
                       size: 25,
                     ),
@@ -75,7 +88,7 @@ class FoodDetail extends StatelessWidget {
                       width: 20,
                     ),
                     PrimaryText(
-                      text: '${foodcontroller.foods[index].price}',
+                      text: '${check[index].price}',
                       size: 30,
                       fontWeight: FontWeight.w700,
                       height: 1,
@@ -89,7 +102,7 @@ class FoodDetail extends StatelessWidget {
                   child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        PrimaryText(
+                        const PrimaryText(
                           text: 'Description',
                           color: AppColors.lightGray,
                           size: 25,
@@ -99,7 +112,7 @@ class FoodDetail extends StatelessWidget {
                           height: 8,
                         ),
                         PrimaryText(
-                            text: foodcontroller.foods[index].description,
+                            text: check[index].description,
                             size: 18,
                             fontWeight: FontWeight.bold),
                       ]),
@@ -108,7 +121,7 @@ class FoodDetail extends StatelessWidget {
                   height: 30,
                 ),
                 Hero(
-                  tag: foodcontroller.foods[index].imageUrl,
+                  tag: check[index].imageUrl,
                   child: Container(
                     decoration: BoxDecoration(
                       boxShadow: [
@@ -118,9 +131,7 @@ class FoodDetail extends StatelessWidget {
                     ),
                     height: 200,
                     child: Image.asset(
-                        'assets/images/' +
-                            foodcontroller.foods[index].imageUrl +
-                            ".png",
+                        'assets/images/' + check[index].imageUrl + ".png",
                         fit: BoxFit.cover),
                   ),
                 ),

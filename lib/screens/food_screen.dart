@@ -11,6 +11,8 @@ import 'package:flutter_application_1/utils/style.dart';
 import 'package:badges/badges.dart';
 import 'package:get/get.dart';
 
+import '../classes/food_class.dart';
+
 var check;
 
 class FoodScreen extends StatefulWidget {
@@ -66,7 +68,7 @@ class _FoodScreenState extends State<FoodScreen> {
               ),
               child: IconButton(
                 onPressed: () {
-                  Get.to(const CartItems());
+                  Get.to(CartItems());
                 },
                 icon: const Icon(Icons.shopping_cart),
               ),
@@ -83,17 +85,17 @@ class _FoodScreenState extends State<FoodScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                  // const Padding(
+                  //   padding: EdgeInsets.only(left: 20),
+                  //   child: PrimaryText(
+                  //     text: 'Food',
+                  //     size: 22,
+                  //   ),
+                  // ),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20),
                     child: PrimaryText(
-                      text: 'Food',
-                      size: 22,
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
-                    child: PrimaryText(
-                      text: 'Delivery',
+                      text: 'Food Delivery',
                       height: 1.1,
                       size: 42,
                       fontWeight: FontWeight.w600,
@@ -127,8 +129,8 @@ class _FoodScreenState extends State<FoodScreen> {
                     ],
                   ),
                   const SizedBox(height: 25),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20),
                     child: PrimaryText(
                         text: 'Categories',
                         fontWeight: FontWeight.w700,
@@ -149,22 +151,23 @@ class _FoodScreenState extends State<FoodScreen> {
                       ),
                     ),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20, top: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 20, top: 10),
                     child: PrimaryText(
                         text: 'Popular', fontWeight: FontWeight.w700, size: 22),
                   ),
                   ListView.builder(
                       shrinkWrap: true,
-                      physics: const ScrollPhysics(),
+                      // physics: const ScrollPhysics(),
                       itemCount: check.length,
                       itemBuilder: (context, index) {
                         return popularFoodCard(
-                          check[index].imageUrl,
-                          check[index].name,
-                          check[index].price,
-                          index,
-                        );
+                            check[index].imageUrl,
+                            check[index].name,
+                            check[index].price,
+                            index,
+                            check[index].description,
+                            check);
                       }),
                 ],
               ),
@@ -175,15 +178,20 @@ class _FoodScreenState extends State<FoodScreen> {
     );
   }
 
-  Widget popularFoodCard(
-      String imageUrl, String name, double price, int index) {
+  Widget popularFoodCard(String imageUrl, String name, double price, int index,
+      String description, List<Food> check) {
     return GestureDetector(
       onTap: () => {
         Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => FoodDetail(
+                      name: name,
+                      imageUrl: imageUrl,
+                      price: price,
+                      description: description,
                       index: index,
+                      check: check,
                     )))
       },
       child: Container(

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/authentication/login.dart';
 import 'package:get/get.dart';
 
 import '../service/service_controller.dart';
@@ -34,20 +35,20 @@ class _SignUpPageState extends State<SignUpPage> {
   var email = '';
   var password = '';
 
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
-  Future<void> addUser() {
-    return users
-        .add({
-          'userName': email,
-          'password': password,
-        })
-        .then(
-          (value) => debugPrint('User Added'),
-        )
-        .catchError(
-          (onError) => debugPrint('Failed to add new user: $onError'),
-        );
-  }
+  // CollectionReference users = FirebaseFirestore.instance.collection('users');
+  // Future<void> addUser() {
+  //   return users
+  //       .add({
+  //         'userName': email,
+  //         'password': password,
+  //       })
+  //       .then(
+  //         (value) => debugPrint('User Added'),
+  //       )
+  //       .catchError(
+  //         (onError) => debugPrint('Failed to add new user: $onError'),
+  //       );
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +150,11 @@ class _SignUpPageState extends State<SignUpPage> {
                           setState(() {
                             email = emailController.text;
                             password = passwdController.text;
+                            // var signup =
                             controller.registerUser(email, password);
+                            // if (signup == true) {
+                            //   Get.to(const FinalLogInPage());
+                            // }
 
                             // addUser();
                           });

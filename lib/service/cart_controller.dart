@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-
+import 'package:collection/collection.dart';
 import '../classes/food_class.dart';
 
 class CartController extends GetxController {
@@ -23,12 +23,18 @@ class CartController extends GetxController {
 
   get foods => _food;
 
-  get foodSubttotal =>
+  get subTotal =>
       _food.entries.map((food) => food.key.price * food.value).toList();
 
-  get total => _food.entries
-      .map((food) => food.key.price * food.value)
-      .toList()
-      .reduce((value, element) => value + element)
-      .toStringAsFixed(2);
+  get total {
+    num sum = 0;
+    for (int i = 0; i < subTotal.length; i++) {
+      sum = sum + subTotal[i];
+    }
+    return sum;
+    // subTotal
+    //   .reduce((value, element) => value + element)
+    //   .toList()
+    //   .toStringAsFixed(2);
+  }
 }
